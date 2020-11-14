@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>你当前路径不存在</div>
-    <dvi> <router-link to="/">返回</router-link>    </dvi>
+    <div> <router-link to="/">返回</router-link>    </div>
   </div>
 
 </template>
