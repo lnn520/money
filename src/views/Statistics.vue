@@ -1,6 +1,7 @@
 <template>
-<div>static
-<Nav/></div>
+<layout>
+  statistics
+</layout>
 </template>
 
 <script lang="ts">

@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 name: "Layout"
 }
@@ -20,7 +20,6 @@ name: "Layout"
   height: 100vh;
 }
 .content{
-  border:1px solid black;
   overflow: auto;//加一个滚动
   flex-grow: 1;
 }
