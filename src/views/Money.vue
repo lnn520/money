@@ -4,7 +4,7 @@
 
 <NumberPad/>
 
-<Types/>
+<Types xxx="hi"/>
 
     <Notes/>
 
