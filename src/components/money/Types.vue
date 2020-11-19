@@ -1,47 +1,64 @@
 <template>
-  <div >
+  <div>
     <ul class="types">
-      <li :class="type==='-' && 'selected'"
-      @click="selectType('-')">支出</li>
-      <li :class="type==='+' && 'selected'"
-      @click ="selectType('+')">收入</li>
+      <li :class="value==='-' && 'selected'"
+          @click="selectType('-')">支出
+      </li>
+      <li :class="value==='+' && 'selected'"
+          @click="selectType('+')">收入
+      </li>
     </ul>
   </div>
 </template>
 
-<script lang="js">
-export default {
-name: "Types",
-  props:['xxx'],
-  data(){
-  return {
-    type:'-'
-  }
-  },
-  created() {
-
-    console.log(this.xxx)
-  },
-  methods:{
-  selectType(type){
-    if(type !=='-' &&type !=='+')
-    {
-      throw new Error('type is unKnow')
+<script lang="ts">
+import Vue from 'vue';//'-'表示支出'+表示‘收入'
+import {Component, Prop} from 'vue-property-decorator';
+@Component
+export default class Types extends Vue {
+  @Prop() readonly  value!: string//！不管初始值
+  selectType(type: string) {
+    if (type !== '-' && type !== '+') {
+      throw new Error('type is unKnow');
     }
-    this.type =type;
+    this.$emit('update:value',type)
   }
-  }
+
+
 }
+// export default {
+// name: "Types",
+//   props:['xxx'],
+//   data(){
+//   return {
+//     type:'-'
+//   }
+//   },
+//   created() {
+//
+//     console.log(this.xxx)
+//   },
+//   methods:{
+//   selectType(type){
+//     if(type !=='-' &&type !=='+')
+//     {
+//       throw new Error('type is unKnow')
+//     }
+//     this.type =type;
+//   }
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>
-.types{
+.types {
   background: #c4c4c4;
   display: flex;
   text-align: center;
   font-size: 24px;
-  >li{
-    width:50%;
+
+  > li {
+    width: 50%;
     line-height: 64px;
     height: 64px;
     display: flex;
@@ -49,7 +66,7 @@ name: "Types",
     align-items: center;
     position: relative;
 
-    &.selected::after{
+    &.selected::after {
       content: '';
       position: absolute;
       bottom: 0;
