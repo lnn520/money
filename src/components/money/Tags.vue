@@ -55,13 +55,14 @@ export default class Tags extends Vue {
 
   > .current {
     display: flex;
-
+    flex-wrap: wrap;
     > li {
       background: #d9d9d9;
       height: 24px;
       line-height: 24px;
       border-radius: 12px;
       padding: 0 16px;
+      margin-top: 5px;
       margin-right: 12px;
       &.selected{
         color: white;
