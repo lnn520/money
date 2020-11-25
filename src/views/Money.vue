@@ -24,13 +24,13 @@ import {recordListModel} from '@/models/recordListModel';
 
 
 window.localStorage.setItem('version', '0.0.1');
-const recordList = recordListModel.fetch();
+
 @Component({
   components: {Tags, FormItem: FormItem, Types, NumberPad}
 })
 export default class Money extends Vue {
   tags = window.tagList;
-  recordList: RecordItem[] = recordList;
+  recordList =  window.recordList;
   record: RecordItem = {tags: [], notes: '', type: '-', amount: 0};
 
   onUpdateTags(value: string[]) {
@@ -42,7 +42,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    recordListModel.create(this.record);
+   window.createRecord(this.record);
 
   }
 
