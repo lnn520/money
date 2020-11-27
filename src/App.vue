@@ -6,6 +6,16 @@
 
 </template>
 
+<script lang="js" >
+import store from '@/store/index2'
+export  default {
+  data (){
+    return store;
+  }
+
+}
+
+</script>
 <style lang="scss">
 @import "~@/assets/style/reset.scss";
 @import "~@/assets/style/helper.scss";

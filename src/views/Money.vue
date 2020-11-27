@@ -8,8 +8,8 @@
     <div class="notes">
       <FormItem field-name="备注" placeholder="请在这输入备注" @update:value="onUpdateNotes"/>
     </div>
-    <Tags :data-source.sync="tags " @update:value="onUpdateTags"/>
-
+    <Tags />
+    {{ count}}<button @click="$store.commit('increment',1)">+1</button>
   </layout>
 </template>
 
@@ -20,29 +20,37 @@ import Types from '@/components/money/Types.vue';
 import FormItem from '@/components/money/FormItem.vue';
 import Tags from '@/components/money/Tags.vue';
 import {Component} from 'vue-property-decorator';
-import store from '@/store/index2';
-
+import oldStore from '@/store/index2';
+import store from '@/store/index';
+import Button from '@/components/Button.vue';
 
 window.localStorage.setItem('version', '0.0.1');
 
 @Component({
-  components: {Tags, FormItem: FormItem, Types, NumberPad}
+  components: {Button, Tags, FormItem: FormItem, Types, NumberPad},
+  computed: {
+    count(){
+      return store.state.count;
+    },
+    recordList(){
+     return oldStore.recordList;
+    }
+  }
 })
 export default class Money extends Vue {
-  tags = store.tagList;
-  recordList = store.recordList;
+
   record: RecordItem = {tags: [], notes: '', type: '-', amount: 0};
 
-  onUpdateTags(value: string[]) {
-    this.record.tags = value;
-  }
 
   onUpdateNotes(value: string) {
     this.record.notes = value;
   }
-
+  add(){
+    this.$store.commit('increment',10)
+    store.commit('increment',10);
+  }
   saveRecord() {
-   store.createRecord(this.record);
+   oldStore.createRecord(this.record);
 
   }
 
